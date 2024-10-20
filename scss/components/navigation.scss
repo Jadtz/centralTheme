@@ -104,7 +104,7 @@ body:not(.admin-interface) {
     .sidebar-section-link-wrapper[data-category-id] {
       .sidebar-section-link-prefix {
         &:before {
-          content: "📁";
+          content: "";
           background: none;
           width: 1rem;
           height: 1rem;
@@ -126,7 +126,12 @@ body:not(.admin-interface) {
     }
   }
 
-
+  [data-link-name="all-categories"],
+  [data-link-name="all-tags"] {
+    .d-icon {
+      height: 0.75em; // a little too large by default
+    }
+  }
 
   // The default sidebar becomes slide-out for smaller screens
   // but we still want to use it, so a duplicate is added
@@ -529,7 +534,7 @@ body:has(.admin-main-nav .nav-pills) {
 
   .sidebar-section-link {
     &:before {
-      content: "📁";
+      content: "";
       background: none;
       width: 1.25rem;
       height: 1.25rem;
