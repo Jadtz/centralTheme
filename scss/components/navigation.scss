@@ -1,0 +1,570 @@
+body:not(.admin-interface) {
+  .sidebar-wrapper {
+    --d-sidebar-section-link-prefix-margin-right: 1rem;
+    --d-sidebar-link-icon-color: var(--primary);
+    --d-sidebar-section-link-icon-size: 1.25em;
+    --d-sidebar-highlight-color: var(--primary);
+
+    font-size: var(--font-down-1);
+
+    .sidebar-container {
+      padding-top: 0.75rem;
+      border: none;
+    }
+
+    .sidebar-section-header-caret {
+      display: none;
+    }
+  }
+
+  .sidebar-section-link-wrapper {
+    .sidebar-section-link {
+      border-radius: var(--rounded-md);
+      height: 2.5rem;
+      &.active {
+        font-weight: 600;
+      }
+    }
+
+    .d-icon-wrench {
+      width: 0.85em; // a little too large by default
+    }
+  }
+
+  .sidebar-more-section-links-details-content {
+    padding: 0.5em;
+  }
+
+  .sidebar-more-section-links-details-content-footer {
+    border: none;
+  }
+
+  .sidebar-section-header-collapsable {
+    pointer-events: none;
+  }
+
+  .sidebar-section-header-button {
+    border-radius: var(--rounded-full);
+  }
+
+  .sidebar-section-header-text {
+    font-size: var(--font-down-1);
+    font-weight: 400;
+  }
+
+  .sidebar-footer-wrapper .sidebar-footer-actions {
+    margin-left: 0;
+  }
+
+  .sidebar-footer-actions-keyboard-shortcuts {
+    display: none;
+  }
+
+  .sidebar-section-wrapper .sidebar-section-header-wrapper {
+    border-radius: var(--rounded-md);
+    .discourse-no-touch & {
+      &:hover,
+      &:focus {
+        background: transparent;
+      }
+    }
+  }
+
+  .sidebar-section-header-global-indicator {
+    display: none;
+  }
+
+  .sidebar-section {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--primary-low);
+
+    &[data-section-name="categories"] {
+      border: none;
+    }
+  }
+
+  .sidebar-section-link-prefix.icon {
+    font-size: var(--font-up-2);
+  }
+
+  .sidebar-section-wrapper {
+    &[data-section-name="chat-channels"],
+    &[data-section-name="chat-dms"],
+    &[data-section-name="tags"],
+    &[data-section-name="messages"] {
+      display: none;
+    }
+  }
+
+  [data-list-item-name="Chat"] {
+    display: none;
+  }
+
+  #sidebar-section-content-categories {
+    .sidebar-section-link-wrapper[data-category-id] {
+      .sidebar-section-link-prefix {
+        &:before {
+          content: "📁";
+          background: none;
+          width: 1rem;
+          height: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1rem;
+          padding-left: 0.25em; // alignment fix
+        }
+      }
+
+      .prefix-span {
+        visibility: hidden;
+      }
+    }
+
+    .sidebar-section-link-prefix.span .prefix-badge {
+      right: -0.35em;
+    }
+  }
+
+  [data-link-name="all-categories"],
+  [data-link-name="all-tags"] {
+    .d-icon {
+      height: 0.75em; // a little too large by default
+    }
+  }
+
+  // The default sidebar becomes slide-out for smaller screens
+  // but we still want to use it, so a duplicate is added
+  // with the class c–small-sidebar
+
+  @media screen and (max-width: 1000px) {
+    .sidebar-wrapper {
+      .sidebar-section-wrapper .sidebar-section-header-wrapper {
+        display: none;
+      }
+
+      .sidebar-section-wrapper {
+        &[data-section-name="categories"],
+        &[data-section-name="chat-channels"],
+        &[data-section-name="chat-dms"],
+        &[data-section-name="tags"],
+        &[data-section-name="messages"] {
+          display: none;
+        }
+      }
+
+      .sidebar-sections {
+        padding-top: 0;
+        gap: 0;
+      }
+
+      .sidebar-section {
+        border: none;
+      }
+
+      .sidebar-section-wrapper {
+        margin: 0;
+      }
+
+      .sidebar-section-content {
+        padding: 0;
+      }
+
+      .sidebar-section-link {
+        height: 3.5rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .sidebar-section-link-content-text {
+          max-width: 6em;
+        }
+
+        &.active {
+          background: transparent;
+          .sidebar-section-link-prefix.icon {
+            background: var(--primary-very-low);
+          }
+        }
+        .discourse-no-touch & {
+          &:hover,
+          &:focus {
+            background: transparent;
+          }
+        }
+      }
+
+      [data-list-item-name="Tags"],
+      [data-list-item-name="Customize this section"],
+      .sidebar-more-section-links-details-summary {
+        display: none;
+      }
+
+      .sidebar-section-link-prefix.icon {
+        font-size: var(--font-up-3);
+        margin: 0;
+        width: 1.25rem;
+        padding: 0.125rem 0.875rem;
+        border-radius: var(--rounded-xl);
+      }
+
+      .sidebar-section-link-content-text {
+        font-size: var(--font-down-1);
+      }
+
+      .sidebar-section-link-suffix {
+        position: absolute;
+        top: 0.25rem;
+        right: 1rem;
+      }
+    }
+
+    .sidebar-footer-wrapper {
+      display: none;
+    }
+  }
+
+  @include breakpoint(tablet) {
+    &[class*="archetype-"] {
+      .sidebar-wrapper {
+        display: none;
+      }
+    }
+
+    .sidebar-wrapper {
+      position: fixed;
+      z-index: 999;
+      top: unset;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      height: var(--mobile-nav-h);
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+
+      background: var(--neutral-100);
+      border-top: var(--border-outer);
+
+      .sidebar-container {
+        padding-top: 0;
+      }
+
+      .sidebar-custom-sections {
+        overflow: auto;
+      }
+
+      .sidebar-section[data-section-name="you"] {
+        display: none;
+      }
+
+      .sidebar-section-link-wrapper:has(.--link-button) {
+        display: none;
+      }
+
+      [data-list-item-name="Chat"],
+      [data-list-item-name="Tags"] {
+        display: flex;
+      }
+
+      .sidebar-sections {
+        display: contents;
+      }
+
+      .sidebar-section {
+        width: 100%;
+      }
+
+      .sidebar-section-wrapper {
+        display: flex;
+      }
+
+      .sidebar-section-content {
+        display: contents;
+      }
+
+      .sidebar-custom-sections {
+        display: flex;
+        flex: 1 1 auto;
+        width: 100%;
+      }
+
+      .sidebar-section-link-wrapper {
+        flex: 1 1 auto;
+      }
+
+      .sidebar-section-link-suffix {
+        top: 0.75rem;
+        left: calc(50% + 0.25rem);
+      }
+    }
+  }
+}
+
+.global-notice .close {
+  font-size: var(--font-down-1);
+  height: 2em;
+  width: 2em;
+}
+
+.navigation-container {
+  .category-breadcrumb,
+  #navigation-bar {
+    display: none;
+  }
+
+  .c-categories {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    &__item-heading {
+      box-sizing: border-box;
+    }
+
+    .badge-category__wrapper,
+    .badge-category,
+    .badge-category__name {
+      width: 100%;
+    }
+
+    &__item-heading {
+      margin: 0;
+    }
+  }
+}
+
+.navigation-container .navigation-controls {
+  & > *:not(:last-child) {
+    margin: 0;
+  }
+  margin: 0;
+  display: grid;
+  width: 100%;
+  // border-bottom: var(--border-inner);
+  padding: 1rem;
+
+  .bulk-select {
+    display: none;
+  }
+
+  h2 {
+    &:before {
+      width: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .navigation-topics & {
+    display: flex;
+  }
+
+  .navigation-categories & {
+    display: flex;
+    .breadcrumbs__title {
+      flex: 1;
+    }
+    #create-category {
+      order: 9;
+    }
+    .categories-admin-dropdown {
+      order: 9;
+    }
+  }
+  .navigation-category & {
+    grid-template-areas:
+      "title title notifications edit . list"
+      ". description description description description list";
+    grid-template-columns: 2rem auto 2.5rem 2.5rem 1fr auto;
+    grid-template-rows: auto auto;
+    row-gap: 0.5rem;
+    column-gap: 1rem;
+  }
+
+  .breadcrumbs {
+    display: contents;
+    &__select {
+      grid-area: list;
+    }
+    &__category {
+      display: contents;
+    }
+    &__title {
+      padding: 0;
+      min-height: 2.5rem;
+      grid-area: title;
+      grid-column: span 2;
+    }
+    &__desc {
+      grid-area: description;
+      white-space: initial;
+    }
+  }
+  .notifications-button {
+    grid-area: notifications;
+  }
+  .edit-category {
+    position: relative;
+    left: -0.5rem;
+    grid-area: edit;
+  }
+}
+
+.breadcrumbs {
+  order: -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  box-sizing: border-box;
+  // min-height: 4.5rem;
+  padding: 1rem 1rem 1rem 0;
+
+  border-bottom: var(--border-inner);
+
+  &__title {
+    @include headline-small;
+
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin: 0;
+
+    .badge-category__wrapper {
+      font-size: inherit;
+
+      .badge-category {
+        gap: 0.5rem;
+        align-items: baseline;
+
+        .badge-category__name {
+          white-space: initial;
+        }
+
+        &::before {
+          width: 2rem;
+        }
+      }
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 0.375rem;
+
+      font-size: 24px;
+
+      &[data-badge-type="emoji"] {
+        width: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1;
+      }
+
+      &[data-clickable="true"] {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__category {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__desc {
+    @include body-medium;
+
+    display: inline-block;
+    // padding-left: 3rem;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__select {
+    @include body-medium;
+    text-align: right;
+    cursor: pointer;
+    height: 2.5rem;
+    width: min-content;
+    margin-bottom: 0;
+    margin-left: auto;
+    padding: 0;
+
+    color: var(--neutral-30);
+
+    background: none;
+    border: none;
+  }
+}
+
+body:has(.admin-main-nav .nav-pills) {
+  .--temp.admin-main-nav {
+    display: none;
+  }
+}
+
+// Styles for custom sidebar categories section
+// https://github.com/discourse/discourse-sidebar-nested-categories
+
+[data-section-name="Categories"] {
+  border: none !important; // very specific in core
+  display: none !important;
+  @media screen and (min-width: 1001px) {
+    display: block !important; // overrides other important
+  }
+}
+
+.sidebar-section-link-wrapper[data-list-item-name="subcategory"] {
+  padding-left: 2.3em;
+  margin-left: 2.25em;
+}
+
+[data-list-item-name="category"] {
+  .sidebar-section-link-prefix.span {
+    display: none;
+  }
+
+  .sidebar-section-link {
+    &:before {
+      content: "📁";
+      background: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.25rem;
+      margin-right: var(--d-sidebar-section-link-prefix-margin-right);
+      position: relative;
+      top: 0.15em; // vertial alignment
+    }
+  }
+}
+
+.sidebar-section-link-wrapper[data-list-item-name="subcategory"] {
+  .sidebar-section-link-prefix.span {
+    width: unset;
+    margin: 0 0 0;
+    .prefix-span {
+      display: none;
+      width: unset;
+    }
+  }
+
+  .sidebar-section-link-prefix.span .prefix-badge {
+    position: relative;
+    width: 0.86em;
+    height: 0.86em;
+    top: unset;
+    margin-right: 0.15em;
+    margin-left: -0.25em; // horizontal alignment
+  }
+}
