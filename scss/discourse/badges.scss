@@ -12,7 +12,7 @@
       }
     }
     &:before {
-      content: "📁";
+      content: "";
       background: none;
       width: 1.25rem;
       height: 1rem;
@@ -23,7 +23,7 @@
     }
 
     .badge-category:before {
-      content: "📁";
+      content: "";
     }
   }
 }
