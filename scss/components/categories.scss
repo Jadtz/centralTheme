@@ -84,7 +84,7 @@
       .badge-category__wrapper {
         background: var(--neutral-100);
         border: var(--border-outer);
-        padding: 0.25rem 0rem 0.25rem 0.5rem;
+        padding: 0.25rem 0.25rem 0.25rem 0.5rem;
         border-radius: var(--rounded-md);
         white-space: nowrap;
         @include hover($opacity: 0.08);
@@ -94,7 +94,7 @@
           @include label-large;
           font-size: var(--font-0);
           &:before {
-            width: 0.25rem;
+            width: 0rem;
             height: 1rem;
             font-size: 0.75rem;
           }
